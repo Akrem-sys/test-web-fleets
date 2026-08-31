@@ -24,11 +24,18 @@
 .DS_Store
 *.pem
 
+# all dot-directories (tooling, build output, agent state) at any level
+.*/
+
 # opencode agent tooling (local renders, extracted Figma assets, screenshots)
 .opencode/
 .playwright-mcp/
 opencode.json
 screenshots-small/
+
+# deployment scripts — live on the `deploy` branch only
+apache/
+deploy/
 
 # debug
 npm-debug.log*
@@ -54,3 +61,4 @@ dist/
 
 # prisma local state (generated)
 .prisma/
+

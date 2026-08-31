@@ -1,0 +1,42 @@
+# Never send these to the docker daemon — secrets stay out of images.
+# The deploy .env is generated ON the server by deploy/deploy.sh.
+
+# VCS / agent tooling
+.git
+.gitignore
+.gitattributes
+.agents
+.claude
+.cursor
+.devin
+.opencode
+.playwright-mcp
+.opencode/screenshots
+
+# Dependencies & build output (rebuilt inside the image)
+node_modules
+.next
+.intlayer
+out
+dist
+coverage
+tsconfig.tsbuildinfo
+
+# Runtime / env (never bake)
+.env
+.env.*
+!.env.example
+
+# Local runtime artifacts
+apache/active.conf
+
+# Docs & noise
+*.md
+!deploy/README.md
+LICENSE
+
+# Screenshots & misc local artifacts
+screenshots*
+.DS_Store
+*.pem
+*.log

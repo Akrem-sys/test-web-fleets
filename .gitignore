@@ -33,9 +33,7 @@
 opencode.json
 screenshots-small/
 
-# deployment scripts — live on the `deploy` branch only
-apache/
-deploy/
+# (deploy branch: apache/ and deploy/ are tracked here)
 
 # debug
 npm-debug.log*

@@ -1,0 +1,9 @@
+// use prisma-next
+
+model Fleet {
+	id          String           @id @default(uuid())
+	title       String
+	description String?
+	color       String
+	createdAt   TimestamptzString @default(now())
+}

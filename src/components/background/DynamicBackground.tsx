@@ -15,7 +15,7 @@ interface DynamicBackgroundProps {
 export const DynamicBackground: FC<DynamicBackgroundProps> = ({
   animated = true,
   className,
-  theme = "light",
+  theme = "dark",
 }) => {
   return (
     <div
@@ -27,6 +27,8 @@ export const DynamicBackground: FC<DynamicBackgroundProps> = ({
       )}
     >
       {animated && <Blob />}
+      {/* Soft vertical lavender band, after the blobs */}
+      <div className="absolute inset-y-0 left-[24.2%] w-[51.4%] bg-[linear-gradient(90deg,transparent_0%,rgba(140,130,197,0.12)_50%,transparent_100%)]" />
     </div>
   );
 };

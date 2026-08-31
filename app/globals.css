@@ -12,6 +12,44 @@
     color: var(--color-primary);
     letter-spacing: -0.02em;
   }
+
+  html {
+    /* Dark native chrome (scrollbars, overscroll) */
+    color-scheme: dark;
+  }
+
+  /* Custom scrollbar (window-level) */
+  html {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #5c5494 transparent;
+  }
+
+  html::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background: #5c5494;
+    border-radius: 10px;
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: #6e66a8;
+  }
+
+  html::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  body {
+    /* Matches DynamicBackground so overscroll never flashes white */
+    background-color: #272149;
+  }
 }
 
 @theme {
@@ -50,6 +88,8 @@
   --color-danger-600: color-mix(in oklab, var(--color-danger) 70%, transparent);
   --color-danger-700: color-mix(in oklab, var(--color-danger) 80%, transparent);
   --color-danger-800: color-mix(in oklab, var(--color-danger) 90%, transparent);
+  /* Solid error-text color — the danger-50→800 washes are too faint to read on dark surfaces */
+  --color-danger-text: #eb8181;
 
   --color-warning: #ffc20a;
   --color-warning-50: color-mix(in oklab, var(--color-warning) 10%, transparent);
@@ -284,13 +324,11 @@
       border-radius: var(--radius-m);
       transform: scaleX(1);
     }
-    /* The "Stretch": it gets extra wide and the corners 'melt' */
     40% {
       width: 275px;
       border-radius: 2rem 4rem 4rem 2rem;
       transform: scaleX(1.02);
     }
-    /* The "Wobble": it overshoots and gets slightly thinner */
     70% {
       width: 255px;
       border-radius: 0.8rem 1.5rem 1.5rem 0.8rem;
@@ -308,12 +346,10 @@
       width: 260px;
       transform: scaleX(1);
     }
-    /* The "Anticipation": it bulges slightly before shrinking */
     20% {
       width: 270px;
       border-radius: 1.5rem;
     }
-    /* The "Snap": fast shrink with rounded edges */
     100% {
       width: 6rem;
       border-radius: var(--radius-m);
@@ -328,7 +364,6 @@
       filter: blur(4px);
       clip-path: inset(0 100% 0 0);
     }
-    /* Emerging like a bubble popping through the surface */
     100% {
       opacity: 1;
       transform: translateX(0) scale(1);
@@ -514,6 +549,18 @@
     display: none; /* Safari and Chrome */
   }
 
+  /* Fleets grid scrolls internally; native scrollbar hidden (thumb is DOM-drawn) */
+  .fleets-scroll {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .fleets-scroll::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+    width: 0;
+    height: 0;
+  }
+
   @keyframes fade-slow {
     0%,
     100% {
@@ -632,4 +679,14 @@
     inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) 20%, transparent),
     0px 1px 5px 0px color-mix(in srgb, var(--c-dark) 20%, transparent),
     0px 6px 16px 0px color-mix(in srgb, var(--c-dark) 16%, transparent);
+}
+
+/* 1px directional light rim for glass cards — paint above the color wash */
+@utility glass-rim {
+  border-radius: inherit;
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.32), /* top */
+    inset 1px 0 0 0 rgb(255 255 255 / 0.32), /* left */
+    inset 0 -1px 0 0 rgb(255 255 255 / 0.3), /* bottom */
+    inset -1px 0 0 0 rgb(255 255 255 / 0.07); /* right (faint) */
 }

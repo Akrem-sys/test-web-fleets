@@ -22,21 +22,7 @@ export interface IModalRootProps {
   children: React.ReactNode;
 }
 
-/**
- * Root Modal component that wraps all modal subcomponents
- *
- * @example
- * ```tsx
- * <Modal.Root id="my-modal" animation="scale">
- *   <Modal.Overlay />
- *   <Modal.Content>
- *     <Modal.Header>Title</Modal.Header>
- *     <Modal.Body>Content</Modal.Body>
- *     <Modal.Footer>Actions</Modal.Footer>
- *   </Modal.Content>
- * </Modal.Root>
- * ```
- */
+/** Root Modal component that wraps all modal subcomponents. */
 export const ModalRoot = ({
   id,
   animation = "scale",
@@ -92,7 +78,6 @@ export const ModalRoot = ({
     setCloseOnEscape,
   ]);
 
-  // Handle Escape key press
   useHotkeys(
     "escape",
     (e) => {
@@ -118,16 +103,18 @@ export const ModalRoot = ({
     }
   }, [isOpen]);
 
-  // Portal render
   if (!isOpen || !portalElement) return null;
 
   return createPortal(
     <AnimatePresence mode="wait">
-      {React.Children.map(children, (child, index) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child, { key: child.key ?? `${id}-${index}` })
-          : child,
-      )}
+      {/* Single keyed child: AnimatePresence mode="wait" misbehaves with several children */}
+      <React.Fragment key={id}>
+        {React.Children.map(children, (child, index) =>
+          React.isValidElement(child)
+            ? React.cloneElement(child, { key: child.key ?? `${id}-${index}` })
+            : child,
+        )}
+      </React.Fragment>
     </AnimatePresence>,
     portalElement,
   );

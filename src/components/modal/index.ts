@@ -16,6 +16,7 @@ import { ModalReturn } from "./ui/ModalReturn";
 import { ModalRoot } from "./ui/ModalRoot";
 
 export const Modal = Object.assign(ModalRoot, {
+  Root: ModalRoot,
   Overlay: ModalOverlay,
   Content: ModalContent,
   Header: ModalHeader,

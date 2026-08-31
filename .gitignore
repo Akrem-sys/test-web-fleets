@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# opencode agent tooling (local renders, extracted Figma assets, screenshots)
+.opencode/
+.playwright-mcp/
+opencode.json
+screenshots-small/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -39,3 +45,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+node_modules/
+dist/
+.env
+
+# intlayer build output (generated)
+.intlayer/
+
+# prisma local state (generated)
+.prisma/

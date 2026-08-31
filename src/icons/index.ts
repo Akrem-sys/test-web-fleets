@@ -1,2 +1,2 @@
-export { default as ArrowLeftIcon } from "./arrow-left.svg";
+export { ArrowLeftIcon } from "./ArrowLeftIcon";
 export { CloseIcon } from "./CloseIcon";

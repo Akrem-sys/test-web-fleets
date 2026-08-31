@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated artifacts (Prisma contract, Intlayer build output):
+    "src/prisma/contract.d.ts",
+    "src/prisma/contract.json",
+    "migrations/**",
+    ".intlayer/**",
   ]),
 ]);
 
